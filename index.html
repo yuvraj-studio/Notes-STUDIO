@@ -521,6 +521,7 @@ html.is-android .andbar.gone{display:none;}
 .ssguide .pic.hasimg:hover::after{opacity:1;transform:none;}
 @media(hover:none){.ssguide .pic.hasimg::after{opacity:1;transform:none;}}
 </style>
+<script data-goatcounter="https://yuvraj-singh.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -532,7 +533,7 @@ html.is-android .andbar.gone{display:none;}
     <div id="searchResults"></div>
   </div>
   <div class="topactions">
-    <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe" download title="Download Notes Studio 6.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
+    <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v6.0/NotesStudio-6.0.exe" download title="Download Notes Studio 6.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
     <button class="reportbtn" id="reportBtn" title="Report a bug"><span class="bi">🐞</span><span class="bt">Report bug</span></button>
     <button class="iconbtn" id="themeToggle" title="Toggle theme">🌓</button>
     <button class="iconbtn" id="helpBtn" title="Shortcuts (?)">?</button>
@@ -565,7 +566,7 @@ html.is-android .andbar.gone{display:none;}
           <span class="pill">🎨 Multiple themes</span>
         </div>
         <div class="heroactions">
-          <a class="getapp big" href="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe" download><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Get the App</span><small>· Windows · v6.0</small></a>
+          <a class="getapp big" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v6.0/NotesStudio-6.0.exe" download><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Get the App</span><small>· Windows · v6.0</small></a>
         </div>
         <div class="andcard" id="andCard">
           <h4>📱 On Android?</h4>
@@ -1179,7 +1180,7 @@ document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target
 
 /* ---------- Android-specific app prompt ---------- */
 (function(){
-  const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe";
+  const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v6.0/NotesStudio-6.0.exe";
   const APK=""; // Set the direct Android APK link here; the "Download APK" button will then appear automatically
   const isAnd=/Android/i.test(navigator.userAgent)||/[?&#]android/i.test(location.search+location.hash);
   if(!isAnd) return;
@@ -1244,6 +1245,26 @@ document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target
   window.ssLbList=()=>steps.map(s=>cache[s.n]).filter(Boolean);
   // Warm the image cache so the popup opens instantly
   steps.forEach(s=>load(s.n,()=>{}));
+})();
+
+/* ---------- GoatCounter click tracking (events) ---------- */
+(function(){
+  function track(path,title){
+    try{ if(window.goatcounter && window.goatcounter.count) window.goatcounter.count({path:path,title:title,event:true}); }catch(e){}
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('.getapp'); if(!a) return;
+    if(a.id==='andApk') return track('click/android-apk','Android APK download click');
+    if(a.closest('[data-and]')||a.matches('[data-and]')) return track('click/android-share-link','Android share link click');
+    if(a.closest('.topactions')) return track('click/get-app-topbar','Get App click (top bar)');
+    if(a.closest('.heroactions')) return track('click/get-app-hero','Get App click (overview button)');
+  });
+  // Count SmartScreen guide opens and how far people get
+  const g=document.getElementById('ssGuide');
+  if(g){
+    new MutationObserver(()=>{ if(g.classList.contains('show')) track('click/smartscreen-guide-open','SmartScreen guide opened'); }).observe(g,{attributes:true,attributeFilter:['class']});
+    document.getElementById('ssNext')&&document.getElementById('ssNext').addEventListener('click',()=>{ if(document.getElementById('ssNext').textContent==='Got it') track('click/smartscreen-guide-done','SmartScreen guide finished'); });
+  }
 })();
 
 goTopic('overview');
