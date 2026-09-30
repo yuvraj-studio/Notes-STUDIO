@@ -466,29 +466,81 @@ h1{background:linear-gradient(90deg,#ffffff 0%,#ff7ac0 35%,#ffab5c 65%,#ffffff 1
 .heroactions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;}
 @media(max-width:700px){.topactions .getapp .bt{display:none;}.topactions .getapp{width:34px;padding:0;justify-content:center;}}
 
-/* ===== ANDROID-SPECIFIC APP PROMPT ===== */
-.andbar,.andcard{display:none;}
-html.is-android .topactions .getapp,html.is-android .heroactions .getapp{display:none !important;}
-.getapp[hidden]{display:none !important;}
-html.is-android .topicwrap{padding-bottom:150px;}
-html.is-android .toast{bottom:calc(104px + env(safe-area-inset-bottom,0px));max-width:90vw;text-align:center;}
-html.is-android .andcard{display:block;margin-top:22px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--panel);position:relative;overflow:hidden;}
+/* ===== ANDROID LAYOUT ===== */
+.andcard,.andonly{display:none;}
+html.is-android .andonly{display:flex;}
+html.is-android .topactions .getapp,html.is-android .heroactions,html.is-android #helpBtn{display:none !important;}
+
+/* top bar */
+html.is-android .topbar{gap:8px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top,0px));}
+html.is-android .brand{font-size:14px;gap:8px;min-width:0;}
+html.is-android .topactions{gap:6px;}
+html.is-android .reportbtn{width:34px;padding:0;justify-content:center;}
+html.is-android .reportbtn .bt{display:none;}
+
+/* search: icon button + full-width overlay (stable, no squeezed dropdown) */
+html.is-android .searchbox{display:none;position:fixed;left:0;right:0;bottom:0;max-width:none;flex:none;z-index:45;padding:10px 12px;background:rgba(6,8,14,.62);flex-direction:column;gap:8px;}
+html.is-android .searchbox.open{display:flex;}
+html.is-android .searchbox > svg{display:none;}
+html.is-android .searchbox input{height:46px;padding:0 16px;font-size:16px;border-radius:999px;flex:none;}
+html.is-android #searchResults{position:static;display:none;flex:0 1 auto;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:contain;}
+html.is-android #searchResults.show{display:block;}
+html.is-android .sres{padding:12px 14px;font-size:14px;}
+
+/* tabs */
+html.is-android .tabsbar{padding:0 8px;gap:2px;}
+html.is-android .navlink{padding:12px 12px;font-size:13px;gap:6px;}
+
+/* overview */
+html.is-android .topicwrap{padding:20px 16px 24px;}
+html.is-android .hero{margin-bottom:20px;}
+html.is-android .pillrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+html.is-android .pill{text-align:center;padding:9px 8px;font-size:12px;border-radius:14px;}
+html.is-android .andcard{display:block;margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--panel);position:relative;overflow:hidden;}
 html.is-android .andcard::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad);}
 .andcard h4{margin:0 0 4px;font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;}
 .andcard p{margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.5;}
-.andcard .row{display:flex;gap:8px;flex-wrap:wrap;}
-.andbtn{flex:1;min-width:130px;height:44px;justify-content:center;border:none;font-size:13.5px;}
-.andbtn.ghost{background:var(--panel2);color:var(--text) !important;border:1px solid var(--line);box-shadow:none;}
-.andbtn.ghost svg{stroke:var(--text);}
-html.is-android .andbar{display:flex;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:60;align-items:center;gap:10px;padding:10px 10px 10px 12px;border-radius:18px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.4);animation:barUp .5s var(--spring) both .6s;}
-html.is-android .andbar.gone{display:none;}
-@keyframes barUp{from{transform:translateY(140%);opacity:0;}to{transform:none;opacity:1;}}
-.andbar .ic{width:40px;height:40px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:19px;flex:none;}
-.andbar .tx{flex:1;min-width:0;line-height:1.25;}
-.andbar .tx b{display:block;font-size:13.5px;}
-.andbar .tx span{font-size:11.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.andbar .getapp{height:38px;padding:0 14px;}
-.andbar .x{width:30px;height:30px;border-radius:50%;border:none;background:var(--panel2);color:var(--muted);font-size:13px;cursor:pointer;flex:none;}
+.andbtn{width:100%;height:44px;justify-content:center;border:none;font-size:13.5px;}
+
+/* step-by-step guide */
+html.is-android #topic-guide .topictitle{font-size:20px;}
+html.is-android #topic-guide .sub,html.is-android .hintline,html.is-android .speedbtn{display:none;}
+html.is-android .stepperbar{flex-wrap:nowrap;gap:8px;margin-bottom:14px;}
+html.is-android .stepdots{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:10px;margin:-10px;}
+html.is-android .stepdots::-webkit-scrollbar{display:none;}
+html.is-android .stepdot{flex:none;width:36px;height:36px;}
+html.is-android .playbtn{flex:none;}
+html.is-android .stagecard{padding:16px 14px;border-radius:18px;}
+html.is-android .stagecard h3{font-size:17px;}
+html.is-android .stagecard > p.desc,html.is-android .colL .desc{font-size:14px;margin:0;}
+html.is-android .cols{display:flex;flex-direction:column;align-items:stretch;gap:12px;}
+html.is-android footer{display:none;}
+html.is-android .colL{display:contents;}
+html.is-android .colL > h3{order:0;}
+html.is-android .colL > .desc{order:1;}
+html.is-android .colR{order:2;position:static;width:100%;min-width:0;max-width:100%;}
+html.is-android .colL > .tabgrid{order:3;}
+html.is-android .colL > .tip{order:4;}
+html.is-android .tabgrid{grid-template-columns:1fr;gap:8px;margin:0;}
+html.is-android .tabcard{padding:10px 12px;}
+html.is-android .tip{margin-top:0;}
+/* screenshots: one at a time, chips to switch, swipe supported */
+html.is-android .colR.gal{display:flex;flex-direction:column;gap:10px;align-items:stretch;position:relative;overflow-x:clip;}
+html.is-android .colR.gal .mock{display:none;margin:0;}
+html.is-android .colR.gal .mock.on{display:flex;animation:none;}
+html.is-android .colR.gal .mock.hasimg.on{display:block;}
+html.is-android .colR.gal .mock:not(.hasimg).on{aspect-ratio:16/9;max-height:none;width:100%;flex-direction:column;align-items:center;justify-content:center;}
+html.is-android .colR.gal .mock.out{position:absolute;top:0;left:0;right:0;margin:0 auto;pointer-events:none;}
+html.is-android .shotTabs{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;gap:6px;padding:2px;}
+html.is-android .shotTabs::-webkit-scrollbar{display:none;}
+html.is-android .shotTab{flex:none;max-width:none;}
+html.is-android .shotTab.on::after{display:none;}
+html.is-android .mock.hasimg{width:100%;}
+html.is-android .mock.hasimg img{--imh:58vh;width:100% !important;}
+html.is-android .mock.hasimg::after{opacity:1;transform:none;font-size:10.5px;padding:4px 10px;}
+/* Previous / Next stay reachable at the bottom while scrolling */
+html.is-android #topic-guide .stepnav{position:sticky;bottom:0;z-index:30;margin:14px -16px 0 !important;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:1px solid var(--line);}
+html.is-android .navbtn{flex:1;justify-content:center;height:44px;border-radius:14px;font-size:14px;}
 
 /* ===== SMARTSCREEN GUIDE POPUP ===== */
 .ssguide{position:fixed;z-index:65;top:calc(70px + env(safe-area-inset-top,0px));right:16px;width:min(360px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.45);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-16px) scale(.97);transition:opacity .3s,transform .45s var(--spring),visibility 0s .45s;}
@@ -534,6 +586,7 @@ html.is-android .andbar.gone{display:none;}
   </div>
   <div class="topactions">
     <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v6.0/NotesStudio-6.0.exe" download title="Download Notes Studio 6.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
+    <button class="iconbtn andonly" id="andSearchBtn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
     <button class="reportbtn" id="reportBtn" title="Report a bug"><span class="bi">🐞</span><span class="bt">Report bug</span></button>
     <button class="iconbtn" id="themeToggle" title="Toggle theme">🌓</button>
     <button class="iconbtn" id="helpBtn" title="Shortcuts (?)">?</button>
@@ -573,7 +626,6 @@ html.is-android .andbar.gone{display:none;}
           <p>Notes Studio 6.0 is currently available for <b>Windows PC</b> only (.exe). Send the link to your PC or copy it and open it there.</p>
           <div class="row">
             <button class="getapp andbtn" data-and="share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg><span>Send link to PC</span></button>
-            <a class="getapp andbtn ghost" id="andApk" href="#" hidden><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Download APK</span></a>
           </div>
         </div>
       </div>
@@ -662,12 +714,6 @@ html.is-android .andbar.gone{display:none;}
 </div>
 
 
-<div class="andbar" id="andBar">
-  <div class="ic">📝</div>
-  <div class="tx"><b>Notes Studio 6.0</b><span>Windows app · Install on your PC</span></div>
-  <button class="getapp" data-and="share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg><span>Send</span></button>
-  <button class="x" id="andClose" aria-label="Close">✕</button>
-</div>
 
 <div class="ssguide" id="ssGuide" role="dialog" aria-label="Windows SmartScreen guide">
   <div class="hd">
@@ -1165,7 +1211,7 @@ document.addEventListener('click',e=>{
     const dt=last?Math.min(t-last,100):0; last=t;
     const c=document.querySelector('.topic.active .colR.gal');
     if(c!==prev){ el=0; prev=c; }
-    if(c && !reduce){
+    if(c && !reduce && !document.documentElement.classList.contains('is-android')){
       const n=c.querySelectorAll('.mock').length;
       if(!(c.matches(':hover')||lbOpen()||document.hidden)) el+=dt;
       c.style.setProperty('--p',Math.min(el/DUR,1));
@@ -1176,20 +1222,47 @@ document.addEventListener('click',e=>{
   requestAnimationFrame(loop);
 })();
 
-document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target.closest('[data-and]')&&!e.target.closest('#andApk')) showToast('Download starting — NotesStudio-6.0.exe ⬇️'); });
+document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target.closest('[data-and]')) showToast('Download starting — NotesStudio-6.0.exe ⬇️'); });
 
-/* ---------- Android-specific app prompt ---------- */
+/* ---------- Android layout: search overlay, tab/step centering, screenshot swipe, share ---------- */
 (function(){
   const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v6.0/NotesStudio-6.0.exe";
-  const APK=""; // Set the direct Android APK link here; the "Download APK" button will then appear automatically
   const isAnd=/Android/i.test(navigator.userAgent)||/[?&#]android/i.test(location.search+location.hash);
   if(!isAnd) return;
   document.documentElement.classList.add('is-android');
-  const bar=document.getElementById('andBar');
-  try{ if(sessionStorage.getItem('andBarClosed')) bar.classList.add('gone'); }catch(e){}
-  document.getElementById('andClose').onclick=()=>{ bar.classList.add('gone'); try{sessionStorage.setItem('andBarClosed','1');}catch(e){} };
-  const apkBtn=document.getElementById('andApk');
-  if(APK){ apkBtn.href=APK; apkBtn.hidden=false; }
+
+  // Search overlay
+  const sb=document.querySelector('.searchbox'), sBtn=document.getElementById('andSearchBtn'),
+        sIn=document.getElementById('searchInput'), sRes=document.getElementById('searchResults'), tb=document.querySelector('.topbar');
+  // The top bar has a backdrop filter, which would trap a fixed child inside it, so the overlay lives on <body>
+  document.body.appendChild(sb);
+  function openSearch(){ sb.style.top=tb.getBoundingClientRect().bottom+'px'; sb.classList.add('open'); sIn.focus(); }
+  function closeSearch(){ sb.classList.remove('open'); sRes.classList.remove('show'); sIn.blur(); }
+  sBtn.addEventListener('click',()=>{ sb.classList.contains('open')?closeSearch():openSearch(); });
+  sb.addEventListener('click',e=>{ if(e.target===sb) closeSearch(); });
+  sRes.addEventListener('click',e=>{ if(e.target.closest('.sres[data-i]')) setTimeout(()=>sb.classList.remove('open'),0); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&sb.classList.contains('open')) closeSearch(); });
+
+  // Keep the active tab / step dot centred in their scrollable strips
+  function centerIn(bar,el){
+    if(!bar||!el) return; const r=el.getBoundingClientRect(), br=bar.getBoundingClientRect();
+    bar.scrollBy({left:r.left-br.left-(br.width-r.width)/2,behavior:'smooth'});
+  }
+  const _g=goTopic; goTopic=function(a,b){ _g(a,b); centerIn(document.getElementById('tabsBar'),document.querySelector('.navlink.active')); };
+  const _r=renderStage; renderStage=function(d){ _r(d); centerIn(document.getElementById('stepDots'),document.querySelector('.stepdot.current')); };
+  centerIn(document.getElementById('tabsBar'),document.querySelector('.navlink.active'));
+
+  // Swipe left/right on a screenshot gallery to change screenshot
+  let sx=0,sy=0,sc=null;
+  document.addEventListener('touchstart',e=>{ sc=e.target.closest('.colR.gal'); if(!sc) return; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!sc) return; const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy, c=sc; sc=null;
+    if(Math.abs(dx)<50||Math.abs(dy)>Math.abs(dx)*.6) return;
+    const tabs=[...c.querySelectorAll('.shotTab')], i=tabs.findIndex(b=>b.classList.contains('on')), n=i+(dx<0?1:-1);
+    if(tabs[n]) tabs[n].click();
+  },{passive:true});
+
+  // Share the Windows download link (the .exe cannot run on Android)
   async function shareLink(){
     const data={title:'Notes Studio 6.0',text:'Notes Studio 6.0 (Windows) download:',url:EXE};
     try{ if(navigator.share){ await navigator.share(data); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
@@ -1236,9 +1309,9 @@ document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target
   next.addEventListener('click',()=>{ if(cur<steps.length-1) render(cur+1); else close(); });
   document.getElementById('ssClose').addEventListener('click',close);
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && box.classList.contains('show')) close(); });
-  // Only the Windows .exe download triggers the guide (not the Android share/APK buttons)
+  // Only the Windows .exe download triggers the guide (not the Android share button)
   document.addEventListener('click',e=>{
-    const a=e.target.closest('.getapp'); if(!a || a.closest('[data-and]') || a.matches('[data-and]') || a.id==='andApk') return;
+    const a=e.target.closest('.getapp'); if(!a || a.closest('[data-and]') || a.matches('[data-and]')) return;
     setTimeout(open,500);
   });
   // Let the lightbox browse the loaded guide images (steps 1 and 2)
@@ -1254,7 +1327,6 @@ document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target
   }
   document.addEventListener('click',e=>{
     const a=e.target.closest('.getapp'); if(!a) return;
-    if(a.id==='andApk') return track('click/android-apk','Android APK download click');
     if(a.closest('[data-and]')||a.matches('[data-and]')) return track('click/android-share-link','Android share link click');
     if(a.closest('.topactions')) return track('click/get-app-topbar','Get App click (top bar)');
     if(a.closest('.heroactions')) return track('click/get-app-hero','Get App click (overview button)');
