@@ -585,7 +585,7 @@ html.is-android .navbtn{flex:1;justify-content:center;height:44px;border-radius:
     <div id="searchResults"></div>
   </div>
   <div class="topactions">
-    <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.exe" download title="Download Notes Studio 7.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
+    <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.zip" download title="Download Notes Studio 7.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
     <button class="iconbtn andonly" id="andSearchBtn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
     <button class="reportbtn" id="reportBtn" title="Report a bug"><span class="bi">🐞</span><span class="bt">Report bug</span></button>
     <button class="iconbtn" id="themeToggle" title="Toggle theme">🌓</button>
@@ -619,7 +619,7 @@ html.is-android .navbtn{flex:1;justify-content:center;height:44px;border-radius:
           <span class="pill">🎨 Multiple themes</span>
         </div>
         <div class="heroactions">
-          <a class="getapp big" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.exe" download><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Get the App</span><small>· Windows · v7.0</small></a>
+          <a class="getapp big" href="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.zip" download><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Get the App</span><small>· Windows · v7.0</small></a>
         </div>
         <div class="andcard" id="andCard">
           <h4>📱 On Android?</h4>
@@ -1226,7 +1226,7 @@ document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target
 
 /* ---------- Android layout: search overlay, tab/step centering, screenshot swipe, share ---------- */
 (function(){
-  const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.exe";
+  const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/releases/download/v7.0/NotesStudio-7.0.zip";
   const isAnd=/Android/i.test(navigator.userAgent)||/[?&#]android/i.test(location.search+location.hash);
   if(!isAnd) return;
   document.documentElement.classList.add('is-android');
