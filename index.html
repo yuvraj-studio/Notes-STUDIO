@@ -454,6 +454,72 @@ h1{background:linear-gradient(90deg,#ffffff 0%,#ff7ac0 35%,#ffab5c 65%,#ffffff 1
 }
 .shotTab{position:relative;}
 .shotTab.on::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:calc(var(--p,0) * 100%);background:rgba(255,255,255,.9);border-radius:3px;}
+
+/* ===== GET APP BUTTON ===== */
+.getapp{height:34px;padding:0 16px;border-radius:999px;border:none;background:var(--grad);color:#fff !important;text-decoration:none;font-family:inherit;font-weight:800;font-size:12.5px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap;box-shadow:0 4px 16px rgba(236,72,153,.35);transition:transform .35s var(--spring),box-shadow .3s;}
+.getapp:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(236,72,153,.5);}
+.getapp:active{transform:scale(.94);}
+.getapp svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.getapp.big{height:46px;padding:0 24px;font-size:14.5px;gap:10px;}
+.getapp.big svg{width:18px;height:18px;}
+.getapp small{font-weight:600;opacity:.85;font-size:11.5px;}
+.heroactions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;}
+@media(max-width:700px){.topactions .getapp .bt{display:none;}.topactions .getapp{width:34px;padding:0;justify-content:center;}}
+
+/* ===== ANDROID-SPECIFIC APP PROMPT ===== */
+.andbar,.andcard{display:none;}
+html.is-android .topactions .getapp,html.is-android .heroactions .getapp{display:none !important;}
+.getapp[hidden]{display:none !important;}
+html.is-android .topicwrap{padding-bottom:150px;}
+html.is-android .toast{bottom:calc(104px + env(safe-area-inset-bottom,0px));max-width:90vw;text-align:center;}
+html.is-android .andcard{display:block;margin-top:22px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--panel);position:relative;overflow:hidden;}
+html.is-android .andcard::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad);}
+.andcard h4{margin:0 0 4px;font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.andcard p{margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.5;}
+.andcard .row{display:flex;gap:8px;flex-wrap:wrap;}
+.andbtn{flex:1;min-width:130px;height:44px;justify-content:center;border:none;font-size:13.5px;}
+.andbtn.ghost{background:var(--panel2);color:var(--text) !important;border:1px solid var(--line);box-shadow:none;}
+.andbtn.ghost svg{stroke:var(--text);}
+html.is-android .andbar{display:flex;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:60;align-items:center;gap:10px;padding:10px 10px 10px 12px;border-radius:18px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.4);animation:barUp .5s var(--spring) both .6s;}
+html.is-android .andbar.gone{display:none;}
+@keyframes barUp{from{transform:translateY(140%);opacity:0;}to{transform:none;opacity:1;}}
+.andbar .ic{width:40px;height:40px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:19px;flex:none;}
+.andbar .tx{flex:1;min-width:0;line-height:1.25;}
+.andbar .tx b{display:block;font-size:13.5px;}
+.andbar .tx span{font-size:11.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.andbar .getapp{height:38px;padding:0 14px;}
+.andbar .x{width:30px;height:30px;border-radius:50%;border:none;background:var(--panel2);color:var(--muted);font-size:13px;cursor:pointer;flex:none;}
+
+/* ===== SMARTSCREEN GUIDE POPUP ===== */
+.ssguide{position:fixed;z-index:65;top:calc(70px + env(safe-area-inset-top,0px));right:16px;width:min(360px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.45);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-16px) scale(.97);transition:opacity .3s,transform .45s var(--spring),visibility 0s .45s;}
+.ssguide.show{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .45s var(--spring),visibility 0s;}
+.ssguide::before{content:"";display:block;height:3px;background:var(--grad);}
+.ssguide .hd{display:flex;align-items:flex-start;gap:10px;padding:12px 12px 4px 14px;}
+.ssguide .hd .t{flex:1;min-width:0;}
+.ssguide .hd b{display:block;font-size:14px;font-weight:800;}
+.ssguide .hd span{display:block;font-size:12px;color:var(--muted);line-height:1.4;margin-top:2px;}
+.ssguide .x{width:28px;height:28px;border-radius:50%;border:none;background:var(--panel2);color:var(--muted);cursor:pointer;font-size:12px;flex:none;}
+.ssguide .x:hover{color:var(--text);}
+.ssguide .steps{display:flex;gap:6px;padding:8px 14px 0;}
+.ssguide .st{flex:1;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--muted);font-family:inherit;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:border-color .2s,color .2s;}
+.ssguide .st i{font-style:normal;width:18px;height:18px;border-radius:6px;background:var(--line);color:var(--text);font-size:11px;display:flex;align-items:center;justify-content:center;}
+.ssguide .st.on{color:var(--text);border-color:var(--accent1);}
+.ssguide .st.on i{background:var(--grad);color:#fff;}
+.ssguide .pic{margin:10px 14px 0;border:1px solid var(--line);border-radius:12px;background:var(--panel2);overflow:hidden;min-height:120px;display:flex;align-items:center;justify-content:center;position:relative;}
+.ssguide .pic img{display:block;width:100%;height:auto;max-height:230px;object-fit:contain;animation:rise .4s var(--smooth) both;}
+.ssguide .pic .ph{padding:22px 14px;text-align:center;font-size:12px;color:var(--muted);}
+.ssguide .pic .ph code{display:block;margin-top:6px;font-size:11px;color:var(--accent1);}
+.ssguide .cap{padding:10px 14px 0;font-size:13px;line-height:1.45;}
+.ssguide .cap b{color:var(--accent1);}
+.ssguide .ft{display:flex;justify-content:flex-end;gap:8px;padding:12px 14px 14px;}
+.ssguide .ft button{height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:var(--text);font-family:inherit;font-weight:700;font-size:12.5px;cursor:pointer;}
+.ssguide .ft button.pri{background:var(--grad);border:none;color:#fff;}
+@media(max-width:700px){.ssguide{right:50%;transform:translate(50%,-16px) scale(.97);top:calc(64px + env(safe-area-inset-top,0px));}.ssguide.show{transform:translate(50%,0);}}
+
+.ssguide .pic img{cursor:zoom-in;}
+.ssguide .pic.hasimg::after{content:"🔍 Click to zoom";position:absolute;right:8px;bottom:8px;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font-size:10.5px;font-weight:700;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .35s var(--spring);pointer-events:none;}
+.ssguide .pic.hasimg:hover::after{opacity:1;transform:none;}
+@media(hover:none){.ssguide .pic.hasimg::after{opacity:1;transform:none;}}
 </style>
 </head>
 <body>
@@ -466,6 +532,7 @@ h1{background:linear-gradient(90deg,#ffffff 0%,#ff7ac0 35%,#ffab5c 65%,#ffffff 1
     <div id="searchResults"></div>
   </div>
   <div class="topactions">
+    <a class="getapp" id="getAppBtn" href="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe" download title="Download Notes Studio 6.0 for Windows"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span class="bt">Get App</span></a>
     <button class="reportbtn" id="reportBtn" title="Report a bug"><span class="bi">🐞</span><span class="bt">Report bug</span></button>
     <button class="iconbtn" id="themeToggle" title="Toggle theme">🌓</button>
     <button class="iconbtn" id="helpBtn" title="Shortcuts (?)">?</button>
@@ -496,6 +563,17 @@ h1{background:linear-gradient(90deg,#ffffff 0%,#ff7ac0 35%,#ffab5c 65%,#ffffff 1
           <span class="pill">🔒 Processed on this device only</span>
           <span class="pill">💾 Progress auto-saved</span>
           <span class="pill">🎨 Multiple themes</span>
+        </div>
+        <div class="heroactions">
+          <a class="getapp big" href="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe" download><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Get the App</span><small>· Windows · v6.0</small></a>
+        </div>
+        <div class="andcard" id="andCard">
+          <h4>📱 On Android?</h4>
+          <p>Notes Studio 6.0 is currently available for <b>Windows PC</b> only (.exe). Send the link to your PC or copy it and open it there.</p>
+          <div class="row">
+            <button class="getapp andbtn" data-and="share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg><span>Send link to PC</span></button>
+            <a class="getapp andbtn ghost" id="andApk" href="#" hidden><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg><span>Download APK</span></a>
+          </div>
         </div>
       </div>
       <div class="mock" data-shot="1"><div class="ph">🖼️</div><b>Screenshot — App overview / home screen</b><code class="fname">assets/guide/1.png</code></div>
@@ -582,8 +660,29 @@ h1{background:linear-gradient(90deg,#ffffff 0%,#ff7ac0 35%,#ffab5c 65%,#ffffff 1
   </div>
 </div>
 
+
+<div class="andbar" id="andBar">
+  <div class="ic">📝</div>
+  <div class="tx"><b>Notes Studio 6.0</b><span>Windows app · Install on your PC</span></div>
+  <button class="getapp" data-and="share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg><span>Send</span></button>
+  <button class="x" id="andClose" aria-label="Close">✕</button>
+</div>
+
+<div class="ssguide" id="ssGuide" role="dialog" aria-label="Windows SmartScreen guide">
+  <div class="hd">
+    <div class="t"><b>🛡️ Windows blocked the app?</b><span>SmartScreen often warns for new apps. Follow these 2 steps to run it.</span></div>
+    <button class="x" id="ssClose" aria-label="Close">✕</button>
+  </div>
+  <div class="steps">
+    <button class="st on" data-ss="0"><i>1</i>More info</button>
+    <button class="st" data-ss="1"><i>2</i>Run anyway</button>
+  </div>
+  <div class="pic" id="ssPic"></div>
+  <div class="cap" id="ssCap"></div>
+  <div class="ft"><button id="ssNext" class="pri">Next</button></div>
+</div>
 <div class="toast" id="toast"></div>
-<footer>Notes Editor — User Guide · Screenshots are placeholders, replace via assets when ready</footer>
+<footer>Notes Editor — User Guide</footer>
 
 <script>
 /* ---------- data ---------- */
@@ -1000,8 +1099,10 @@ document.getElementById('reportBtn').addEventListener('click',()=>{
     im.onload=()=>fit(false); im.src=list[idx].currentSrc||list[idx].src; if(im.complete&&im.naturalWidth) fit(false);
   }
   function openLb(img){
-    list=[...document.querySelectorAll('.topic.active .mock.hasimg img')]; if(!list.length) return;
-    isOpen=true; lb.classList.add('show'); show(Math.max(0,list.indexOf(img)));
+    const fromGuide=!!img.closest('#ssPic');
+    list=fromGuide&&window.ssLbList ? window.ssLbList() : [...document.querySelectorAll('.topic.active .mock.hasimg img')]; if(!list.length) return;
+    isOpen=true; lb.classList.add('show');
+    show(Math.max(0,fromGuide ? list.findIndex(x=>x.src===img.src) : list.indexOf(img)));
   }
   function closeLb(){ isOpen=false; lb.classList.remove('show'); }
   function act(a){
@@ -1010,7 +1111,7 @@ document.getElementById('reportBtn').addEventListener('click',()=>{
     else if(a==='fit') fit(true); else if(a==='one') zoomAt(1,cx,cy,true);
     else if(a==='next') show(idx+1); else if(a==='prev') show(idx-1);
   }
-  document.addEventListener('click',e=>{ if(isOpen) return; const m=e.target.closest('.mock.hasimg'); if(m) openLb(m.querySelector('img')); });
+  document.addEventListener('click',e=>{ if(isOpen) return; const g=e.target.closest('#ssPic img'); if(g){ openLb(g); return; } const m=e.target.closest('.mock.hasimg'); if(m) openLb(m.querySelector('img')); });
   lb.addEventListener('click',e=>{ const b=e.target.closest('[data-a]'); if(b) act(b.dataset.a); });
   st.addEventListener('wheel',e=>{ e.preventDefault(); const r=st.getBoundingClientRect(); zoomAt(S*Math.exp(-e.deltaY*(e.ctrlKey?.01:.0018)),e.clientX-r.left,e.clientY-r.top,false); },{passive:false});
   st.addEventListener('dblclick',e=>{ const r=st.getBoundingClientRect(); if(S>fitS*1.05) fit(true); else zoomAt(Math.max(fitS*2.5,1),e.clientX-r.left,e.clientY-r.top,true); });
@@ -1072,6 +1173,77 @@ document.addEventListener('click',e=>{
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
+})();
+
+document.addEventListener('click',e=>{ if(e.target.closest('.getapp')&&!e.target.closest('[data-and]')&&!e.target.closest('#andApk')) showToast('Download starting — NotesStudio-6.0.exe ⬇️'); });
+
+/* ---------- Android-specific app prompt ---------- */
+(function(){
+  const EXE="https://github.com/yuvraj-studio/Notes-STUDIO/raw/refs/heads/main/NotesStudio-6.0.exe";
+  const APK=""; // Set the direct Android APK link here; the "Download APK" button will then appear automatically
+  const isAnd=/Android/i.test(navigator.userAgent)||/[?&#]android/i.test(location.search+location.hash);
+  if(!isAnd) return;
+  document.documentElement.classList.add('is-android');
+  const bar=document.getElementById('andBar');
+  try{ if(sessionStorage.getItem('andBarClosed')) bar.classList.add('gone'); }catch(e){}
+  document.getElementById('andClose').onclick=()=>{ bar.classList.add('gone'); try{sessionStorage.setItem('andBarClosed','1');}catch(e){} };
+  const apkBtn=document.getElementById('andApk');
+  if(APK){ apkBtn.href=APK; apkBtn.hidden=false; }
+  async function shareLink(){
+    const data={title:'Notes Studio 6.0',text:'Notes Studio 6.0 (Windows) download:',url:EXE};
+    try{ if(navigator.share){ await navigator.share(data); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+    try{ await navigator.clipboard.writeText(EXE); showToast('Link copied — paste it on your PC to open 📋'); }
+    catch(e){ showToast('Copy failed — long-press the link to copy it manually'); }
+  }
+  document.addEventListener('click',e=>{ const b=e.target.closest('[data-and="share"]'); if(b){ e.preventDefault(); shareLink(); } });
+})();
+
+/* ---------- SmartScreen guide popup (shown after Get App click) ---------- */
+(function(){
+  const box=document.getElementById('ssGuide'); if(!box) return;
+  const pic=document.getElementById('ssPic'), cap=document.getElementById('ssCap'), next=document.getElementById('ssNext');
+  const steps=[
+    {n:17, cap:'Click <b>More info</b> in the blue "Windows protected your PC" window.'},
+    {n:18, cap:'Now click the <b>Run anyway</b> button that appears at the bottom.'}
+  ];
+  const cache={}; let cur=0;
+  function load(n,done){
+    if(n in cache) return done(cache[n]);
+    const exts=['png','jpg','jpeg','webp']; let i=0;
+    (function try_(){
+      if(i>=exts.length){ cache[n]=null; return done(null); }
+      const im=new Image(); im.alt='SmartScreen step '+n;
+      im.onload=()=>{ cache[n]=im; done(im); };
+      im.onerror=()=>{ i++; try_(); };
+      im.src='assets/guide/'+n+'.'+exts[i];
+    })();
+  }
+  function render(i){
+    cur=i; const st=steps[i];
+    box.querySelectorAll('.st').forEach((b,k)=>b.classList.toggle('on',k===i));
+    cap.innerHTML=st.cap; next.textContent=i===steps.length-1?'Got it':'Next';
+    pic.innerHTML=''; pic.classList.remove('hasimg');
+    load(st.n,im=>{
+      if(cur!==i) return;
+      if(im){ pic.classList.add('hasimg'); pic.appendChild(im.cloneNode()); }
+      else { pic.innerHTML='<div class="ph">🖼️ Screenshot not found<code>assets/guide/'+st.n+'.png</code></div>'; }
+    });
+  }
+  function open(){ render(0); box.classList.add('show'); }
+  function close(){ box.classList.remove('show'); }
+  box.querySelectorAll('.st').forEach(b=>b.addEventListener('click',()=>render(+b.dataset.ss)));
+  next.addEventListener('click',()=>{ if(cur<steps.length-1) render(cur+1); else close(); });
+  document.getElementById('ssClose').addEventListener('click',close);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && box.classList.contains('show')) close(); });
+  // Only the Windows .exe download triggers the guide (not the Android share/APK buttons)
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('.getapp'); if(!a || a.closest('[data-and]') || a.matches('[data-and]') || a.id==='andApk') return;
+    setTimeout(open,500);
+  });
+  // Let the lightbox browse the loaded guide images (steps 1 and 2)
+  window.ssLbList=()=>steps.map(s=>cache[s.n]).filter(Boolean);
+  // Warm the image cache so the popup opens instantly
+  steps.forEach(s=>load(s.n,()=>{}));
 })();
 
 goTopic('overview');
